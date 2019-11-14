@@ -1,11 +1,15 @@
 #!/bin/bash
 
-echo "Running simple command..."
-sleep 2
+echo "Running lscpu command."
+echo "This is what it does:"
+lscpu --help 
 echo
 
-lscpu --help > cpu.log
-lscpu >> cpu.log
+echo "Printing results in cpu.log..."
+lscpu > cpu.log
+sleep 1
+date >> cpu.log
+echo
 
 echo "Done"
 
