@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --job-name="single_node"
+#SBATCH --nodes=1
+#SBATCH --ntasks=10
+#SBATCH --time=00:01:00
+#SBATCH --partition=normal
+#SBATCH --workdir=.
+#SBATCH --output=serial_%j.out
+#SBATCH --error=serial_%j.err
+# #SBATCH --reservation=vutraining
+
+
+echo "Who am I?"
+whoami
+echo
+
+echo "Where ?"
+srun hostname
+echo
+
+sleep 120
+
+date
+echo "DONE"
