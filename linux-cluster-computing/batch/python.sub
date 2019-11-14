@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name="python"
+#SBATCH --nodes=1
+#SBATCH --cpus-per-node=10
+#SBATCH --time=00:10:00
+#SBATCH --partition=normal
+#SBATCH --output=python_%j.out
+#SBATCH --error=python_%j.err
+# #SBATCH --reservation=vutraining
+
+module purge
+module load 2019
+module load Python/3.6.6-intel-2018b
+
+echo "OpenMP parallelism"
+echo
+
+for ncores in {9..10}
+
+do
+  export OMP_NUM_THREADS=$ncores
+
+  echo "CPUS: " $OMP_NUM_THREADS
+  echo "CPUS: " $OMP_NUM_THREADS >&2
+  time python linalg.py 
+  echo "DONE "
+
+done
